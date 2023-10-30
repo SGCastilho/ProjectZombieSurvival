@@ -6,11 +6,11 @@ namespace Core.Player
     {
         #region Encapsulation
         public PlayerInput Input { get => _input; }
-        public PlayerMoviment Moviment { get => _moviment; }
+        public PlayerMovement Moviment { get => _moviment; }
         #endregion
 
         [Header("Classes")]
         [SerializeField] private PlayerInput _input;
-        [SerializeField] private PlayerMoviment _moviment;
+        [SerializeField] private PlayerMovement _moviment;
     }
 }
