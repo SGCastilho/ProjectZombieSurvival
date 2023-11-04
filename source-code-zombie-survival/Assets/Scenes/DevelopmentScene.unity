@@ -956,7 +956,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0de2646d21f87e84daf1702834f4da4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _poolingList: []
+  _poolingList:
+  - _poolName: Default Projectile
+    _poolKey: projectile_default
+    _poolSize: 20
+    _poolPrefab: {fileID: 5431563606408935891, guid: c9bc79e34d9d8f8408ce94367e1bcff6, type: 3}
 --- !u!4 &1251282898
 Transform:
   m_ObjectHideFlags: 0
@@ -983,9 +987,10 @@ GameObject:
   - component: {fileID: 1294517815}
   - component: {fileID: 1294517814}
   - component: {fileID: 1294517813}
+  - component: {fileID: 1294517816}
   m_Layer: 6
   m_Name: DebugEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1102,6 +1107,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &1294517816
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1294517812}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1370753821
 GameObject:
   m_ObjectHideFlags: 0
