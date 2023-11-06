@@ -16,6 +16,8 @@ namespace Core.Utilities
                 _moveRight = value;
             }
         }
+
+        public float CurrentSpeed { get => _currentMovementSpeed; set => _currentMovementSpeed = value; }
         #endregion
 
         [Header("Settings")]
@@ -25,21 +27,27 @@ namespace Core.Utilities
         private Transform _transform;
         private Vector2 _movimentVector;
 
+        private float _currentMovementSpeed;
+
         private void Awake()
         {
             _transform = GetComponent<Transform>();
             
             MoveRight = _moveRight;
+            _currentMovementSpeed = _movementSpeed;
         }
 
         private void OnDisable()
         {
             transform.position = Vector2.zero;
+            transform.eulerAngles = Vector3.zero;
+
+            _currentMovementSpeed = _movementSpeed;
         }
 
         private void Update()
         {
-            _transform.Translate(_movementSpeed * Time.deltaTime * _movimentVector);
+            _transform.Translate(_currentMovementSpeed * Time.deltaTime * _movimentVector);
         }
     }
 }

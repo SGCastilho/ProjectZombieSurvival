@@ -16,6 +16,8 @@ namespace Core.Player
 
         private const int BURST_FREQUENCY = 16;
         private const int BURST_BULLET_FREQUENCY = 3;
+        private const int SHOTGUN_BULLET_INSTANCES = 3;
+
         private const string PROJECTILE_KEY = "projectile_default";
 
         [Header("Classes")]
@@ -124,6 +126,7 @@ namespace Core.Player
             CheckForShootType();
         }
 
+        #region All shooting type logics
         private void CheckForShootType()
         {
             OnShoot = null;
@@ -177,7 +180,29 @@ namespace Core.Player
 
         private void SpreadShootType()
         {
-            //Shotgun spreadShoot
+            if(OnProjectileSpawn != null)
+            {
+                for(int i = 0; i < SHOTGUN_BULLET_INSTANCES; i++)
+                {
+                    var projectile = OnProjectileSpawn(PROJECTILE_KEY, _shootPosition.position);
+
+                    projectile.GetComponent<MoveObjectHorizontal>().MoveRight = !_behaviour.Moviment.IsFlipped;
+
+                    var currentSpeed = projectile.GetComponent<MoveObjectHorizontal>().CurrentSpeed;
+
+                    float randomizeSpeed = Random.Range(currentSpeed / 1.16f, currentSpeed);
+
+                    projectile.GetComponent<MoveObjectHorizontal>().CurrentSpeed = randomizeSpeed;
+
+                    int randomizeRotation = Random.Range(-2, 6);    
+
+                    projectile.transform.eulerAngles = randomizeRotation * Vector3.forward;
+                }
+            }
+
+            _currentFireRate = _currentWeapon.FireRate;
+            _canAttack = false;
         }
+        #endregion
     }
 }
