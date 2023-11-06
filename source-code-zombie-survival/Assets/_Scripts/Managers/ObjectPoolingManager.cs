@@ -84,23 +84,33 @@ namespace Core.Managers
             }
         }
 
-        public GameObject SpawnPooling(string poolKey, Vector2 posistion)
+        public GameObject SpawnPooling(string poolKey, Vector2 position)
         {
             var pool = _poolingDictionary[poolKey].Dequeue();
 
-            pool.transform.position = posistion;
+            pool.SetActive(false);
+
+            pool.transform.position = position;
+            
             pool.SetActive(true);
+
+            _poolingDictionary[poolKey].Enqueue(pool);
 
             return pool;
         }
 
-        public GameObject SpawnPooling(string poolKey, Vector2 posistion, Quaternion rotation)
+        public GameObject SpawnPooling(string poolKey, Vector2 position, Quaternion rotation)
         {
             var pool = _poolingDictionary[poolKey].Dequeue();
 
-            pool.transform.position = posistion;
+            pool.SetActive(false);
+
+            pool.transform.position = position;
             pool.transform.rotation = rotation;
+
             pool.SetActive(true);
+
+            _poolingDictionary[poolKey].Enqueue(pool);
 
             return pool;
         }

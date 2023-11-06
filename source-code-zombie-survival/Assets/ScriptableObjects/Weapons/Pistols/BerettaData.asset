@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f96ab60229f5e9e40842215da49dd136, type: 3}
+  m_Name: BerettaData
+  m_EditorClassIdentifier: 
+  _weaponName: Beretta
+  _weaponIcon: {fileID: 0}
+  _weaponGraphics: {fileID: 0}
+  _weaponType: 2
+  _weaponShootType: 1
+  _weaponDamage: 20
+  _weaponCapacity: 16
+  _weaponFireRate: 0.2
