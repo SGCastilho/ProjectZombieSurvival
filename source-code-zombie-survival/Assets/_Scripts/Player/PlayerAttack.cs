@@ -20,6 +20,13 @@ namespace Core.Player
 
         private const string PROJECTILE_KEY = "projectile_default";
 
+        #region Encapsulation
+        public WeaponData CurrentWeapon { get => _currentWeapon; }
+        public WeaponData MeleeWeapon { get => _startedMeleeWeapon; set => _startedMeleeWeapon = value; }
+
+        public int CurrentCapacity { get => _currentWeaponCapacity; }
+        #endregion
+
         [Header("Classes")]
         [SerializeField] private PlayerBehaviour _behaviour;
 
@@ -37,29 +44,30 @@ namespace Core.Player
         [Space(8)]
 
         [SerializeField] [Range(0.6f, 2f)] private float _meleeAttackCouldown = 1f;
-        
-        private WeaponData _currentWeapon;
+
+        [Space(8)]
+
+        [SerializeField] private WeaponData _currentWeapon;
+        [SerializeField] private int _currentWeaponCapacity;
 
         private bool _canAttack;
+
         private bool _meleeInCouldown;
-        private float _currentFireRate;
-        private float _currentFireRateTimer;
         private float _currentMeleeAttackCouldown;
 
-        //Debug
-        [SerializeField] private WeaponData _debug;
+        private float _currentFireRate;
+        private float _currentFireRateTimer;
 
         private void Awake()
         {
             _canAttack = true;
             _meleeInCouldown = false;
 
+            _currentWeaponCapacity = 0;
             _currentFireRateTimer = 0;
             _currentMeleeAttackCouldown = 0;
 
             _currentWeapon = _startedMeleeWeapon;
-
-            ChangeCurrentWeapon(_debug);
         }
 
         private void Update()
@@ -91,9 +99,19 @@ namespace Core.Player
 
             if(_currentWeapon != _startedMeleeWeapon)
             {
-                if(OnShoot == null) return;
+                if(_currentWeaponCapacity > 0)
+                {
+                    if(OnShoot == null) return;
 
-                OnShoot();
+                    OnShoot();
+                }
+                else
+                {
+                    _currentWeaponCapacity = 0;
+                    _behaviour.WeaponRotation.CheckWeaponState();
+
+                    Debug.Log("Sem capacidade");
+                }
             }
             else{ MeleeAttack(); }
         }
@@ -123,7 +141,12 @@ namespace Core.Player
 
             _currentWeapon = weaponData;
 
-            CheckForShootType();
+            if(weaponData.Type != WeaponType.MELEE)
+            {
+                _currentWeaponCapacity = weaponData.Capacity;
+
+                CheckForShootType();
+            }
         }
 
         #region All shooting type logics
@@ -160,6 +183,8 @@ namespace Core.Player
 
                     projectile.GetComponent<MoveObjectHorizontal>().MoveRight = !_behaviour.Moviment.IsFlipped;
 
+                    _currentWeaponCapacity--;
+
                     await Task.Delay(BURST_FREQUENCY);
                 }
             }
@@ -172,6 +197,8 @@ namespace Core.Player
                 var projectile = OnProjectileSpawn(PROJECTILE_KEY, _shootPosition.position);
 
                 projectile.GetComponent<MoveObjectHorizontal>().MoveRight = !_behaviour.Moviment.IsFlipped;
+
+                _currentWeaponCapacity--;
             }
 
             _currentFireRate = _currentWeapon.FireRate;
@@ -197,6 +224,8 @@ namespace Core.Player
                     int randomizeRotation = Random.Range(-2, 6);    
 
                     projectile.transform.eulerAngles = randomizeRotation * Vector3.forward;
+
+                    _currentWeaponCapacity -= SHOTGUN_BULLET_INSTANCES;
                 }
             }
 

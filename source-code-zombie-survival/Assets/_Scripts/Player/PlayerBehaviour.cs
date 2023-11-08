@@ -9,6 +9,7 @@ namespace Core.Player
         public PlayerAttack Attack { get => _attack; }
         public PlayerMovement Moviment { get => _moviment; }
         public PlayerAnimation Animation { get => _animation; }
+        public PlayerWeaponRotation WeaponRotation { get => _weaponRotation; }
         #endregion
 
         [Header("Classes")]
@@ -16,5 +17,6 @@ namespace Core.Player
         [SerializeField] private PlayerAttack _attack;
         [SerializeField] private PlayerMovement _moviment;
         [SerializeField] private PlayerAnimation _animation;
+        [SerializeField] private PlayerWeaponRotation _weaponRotation;
     }
 }

@@ -46,5 +46,13 @@ namespace Core.ScriptableObjects
         [SerializeField] private int _weaponDamage = 10;
         [SerializeField] private int _weaponCapacity = 16;
         [SerializeField] [Range(0.1f, 2f)] private float _weaponFireRate = 1f;
+        
+        #region Editor Variable
+        #if UNITY_EDITOR
+        [Space(16)]
+
+        [SerializeField] [Multiline(6)] private string _devNotes = "Put your dev notes here.";
+        #endif
+        #endregion
     }
 }

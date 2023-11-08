@@ -18,5 +18,6 @@ MonoBehaviour:
   _weaponType: 4
   _weaponShootType: 0
   _weaponDamage: 10
-  _weaponCapacity: 16
+  _weaponCapacity: 24
   _weaponFireRate: 0.6
+  _devNotes: "Burst types capacity most have to be \nMUTIPLE of THREE."

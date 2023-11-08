@@ -589,6 +589,7 @@ GameObject:
   - component: {fileID: 1048950715}
   - component: {fileID: 1048950708}
   - component: {fileID: 1048950714}
+  - component: {fileID: 1048950717}
   - component: {fileID: 1048950713}
   - component: {fileID: 1048950716}
   - component: {fileID: 1048950712}
@@ -629,6 +630,7 @@ MonoBehaviour:
   _attack: {fileID: 1048950714}
   _moviment: {fileID: 1048950713}
   _animation: {fileID: 1048950716}
+  _weaponRotation: {fileID: 1048950717}
 --- !u!4 &1048950710
 Transform:
   m_ObjectHideFlags: 0
@@ -751,7 +753,8 @@ MonoBehaviour:
   _startedMeleeWeapon: {fileID: 11400000, guid: d443cc947ab4f4c418790e1f2b47fa34, type: 2}
   _shootPosition: {fileID: 654805916}
   _meleeAttackCouldown: 1.2
-  _debug: {fileID: 11400000, guid: 4349d97837565d54b9c6d225b2cca37e, type: 2}
+  _currentWeaponCapacity: 0
+  debug: {fileID: 11400000, guid: 691add37c079e0f4b8e40fb0bee5bc9d, type: 2}
 --- !u!114 &1048950715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -879,6 +882,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 358229254}
+--- !u!114 &1048950717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1048950707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bdfb870d9953324b8090a482983aa3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _behaviour: {fileID: 1048950709}
+  _weaponRotationList: []
+  teste1: {fileID: 11400000, guid: 4349d97837565d54b9c6d225b2cca37e, type: 2}
+  teste2: {fileID: 11400000, guid: 279ea2e3877ea0542a7dfc186c35b5ca, type: 2}
+  teste3: {fileID: 11400000, guid: 691add37c079e0f4b8e40fb0bee5bc9d, type: 2}
+  teste4: {fileID: 11400000, guid: 279ea2e3877ea0542a7dfc186c35b5ca, type: 2}
 --- !u!1 &1192980026
 GameObject:
   m_ObjectHideFlags: 0
