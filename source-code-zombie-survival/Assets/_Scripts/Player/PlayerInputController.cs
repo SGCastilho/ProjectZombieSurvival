@@ -49,7 +49,7 @@ namespace Core.Player
 
         public void UltimateInput(InputAction.CallbackContext context)
         {
-            Debug.Log("Ultimate");
+            _behaviour.Attack.UltimateAttack();
         }
 
         public void InteractInput(InputAction.CallbackContext context)

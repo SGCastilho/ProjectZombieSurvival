@@ -586,6 +586,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1048950710}
   - component: {fileID: 1048950709}
+  - component: {fileID: 1048950718}
   - component: {fileID: 1048950715}
   - component: {fileID: 1048950708}
   - component: {fileID: 1048950714}
@@ -626,6 +627,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8a87a32ed0426a4ab284cdd7fc1a769, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _status: {fileID: 1048950718}
   _input: {fileID: 1048950708}
   _attack: {fileID: 1048950714}
   _moviment: {fileID: 1048950713}
@@ -753,8 +755,8 @@ MonoBehaviour:
   _startedMeleeWeapon: {fileID: 11400000, guid: d443cc947ab4f4c418790e1f2b47fa34, type: 2}
   _shootPosition: {fileID: 654805916}
   _meleeAttackCouldown: 1.2
+  _currentWeapon: {fileID: 0}
   _currentWeaponCapacity: 0
-  debug: {fileID: 11400000, guid: 691add37c079e0f4b8e40fb0bee5bc9d, type: 2}
 --- !u!114 &1048950715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -896,10 +898,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _behaviour: {fileID: 1048950709}
   _weaponRotationList: []
-  teste1: {fileID: 11400000, guid: 4349d97837565d54b9c6d225b2cca37e, type: 2}
-  teste2: {fileID: 11400000, guid: 279ea2e3877ea0542a7dfc186c35b5ca, type: 2}
-  teste3: {fileID: 11400000, guid: 691add37c079e0f4b8e40fb0bee5bc9d, type: 2}
-  teste4: {fileID: 11400000, guid: 279ea2e3877ea0542a7dfc186c35b5ca, type: 2}
+--- !u!114 &1048950718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1048950707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80e5d5998fbd1e74dae74ff4377ec5d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerHealth: 0
+  _playerMaxHealth: 100
+  _playerUltimateCharge: 0
+  _playerMaxUltimateCharge: 4
 --- !u!1 &1192980026
 GameObject:
   m_ObjectHideFlags: 0

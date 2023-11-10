@@ -135,6 +135,13 @@ namespace Core.Player
         }
         #endregion
 
+        public void UltimateAttack()
+        {
+            Debug.Log("Ultimate");
+
+            //Fazer ultimate
+        }
+
         public void ChangeCurrentWeapon(WeaponData weaponData)
         {
             if(weaponData == null) return;
