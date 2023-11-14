@@ -54,7 +54,7 @@ namespace Core.Player
 
         public void InteractInput(InputAction.CallbackContext context)
         {
-            Debug.Log("Interacting");
+            _behaviour.Interact.DoInteraction();
         }
 
         public void PauseGameInput(InputAction.CallbackContext context)

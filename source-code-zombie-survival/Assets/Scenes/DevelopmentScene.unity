@@ -592,6 +592,7 @@ GameObject:
   - component: {fileID: 1048950714}
   - component: {fileID: 1048950717}
   - component: {fileID: 1048950713}
+  - component: {fileID: 1048950719}
   - component: {fileID: 1048950716}
   - component: {fileID: 1048950712}
   - component: {fileID: 1048950711}
@@ -633,6 +634,7 @@ MonoBehaviour:
   _moviment: {fileID: 1048950713}
   _animation: {fileID: 1048950716}
   _weaponRotation: {fileID: 1048950717}
+  _interact: {fileID: 1048950719}
 --- !u!4 &1048950710
 Transform:
   m_ObjectHideFlags: 0
@@ -914,6 +916,19 @@ MonoBehaviour:
   _playerMaxHealth: 100
   _playerUltimateCharge: 0
   _playerMaxUltimateCharge: 4
+--- !u!114 &1048950719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1048950707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ce3bd67d516547499682d8678063ec3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _behaviour: {fileID: 1048950709}
 --- !u!1 &1192980026
 GameObject:
   m_ObjectHideFlags: 0
@@ -1032,6 +1047,26 @@ MonoBehaviour:
     _poolKey: projectile_default
     _poolSize: 20
     _poolPrefab: {fileID: 5431563606408935891, guid: c9bc79e34d9d8f8408ce94367e1bcff6, type: 3}
+  - _poolName: Collectable Health
+    _poolKey: collectable_health
+    _poolSize: 6
+    _poolPrefab: {fileID: 3075866562288018374, guid: 16c220c1230e9bf4aad42f4db7edc5df, type: 3}
+  - _poolName: Collectable Ultimate
+    _poolKey: collectable_ultimate
+    _poolSize: 6
+    _poolPrefab: {fileID: 1439772746876443224, guid: 0c274945ff12b384299c9081ef78abe5, type: 3}
+  - _poolName: Collectable Weapon Pistol
+    _poolKey: collectable_weapon_pistol
+    _poolSize: 2
+    _poolPrefab: {fileID: 5043846187372660057, guid: 05be403220aafa94b8a553f28fa4944c, type: 3}
+  - _poolName: Collectable Weapon Submachine
+    _poolKey: collectable_weapon_submachine
+    _poolSize: 2
+    _poolPrefab: {fileID: 7243422624614594496, guid: 18ec8ec928fb66640a21e9903526d6b4, type: 3}
+  - _poolName: Collectable Weapon Shotgun
+    _poolKey: collectable_weapon_shotgun
+    _poolSize: 2
+    _poolPrefab: {fileID: 9109377977960318924, guid: 5c307858ebbe7c842b6317642b443702, type: 3}
 --- !u!4 &1251282898
 Transform:
   m_ObjectHideFlags: 0

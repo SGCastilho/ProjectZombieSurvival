@@ -11,6 +11,7 @@ namespace Core.Player
         public PlayerMovement Moviment { get => _moviment; }
         public PlayerAnimation Animation { get => _animation; }
         public PlayerWeaponRotation WeaponRotation { get => _weaponRotation; }
+        public PlayerInteract Interact { get => _interact; }
         #endregion
 
         [Header("Classes")]
@@ -20,5 +21,6 @@ namespace Core.Player
         [SerializeField] private PlayerMovement _moviment;
         [SerializeField] private PlayerAnimation _animation;
         [SerializeField] private PlayerWeaponRotation _weaponRotation;
+        [SerializeField] private PlayerInteract _interact;
     }
 }
