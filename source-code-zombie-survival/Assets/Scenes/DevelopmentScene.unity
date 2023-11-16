@@ -420,7 +420,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 18, y: 1}
+  m_Size: {x: 72, y: 1}
   m_EdgeRadius: 0
 --- !u!1 &433243834
 GameObject:
@@ -431,8 +431,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 433243835}
+  - component: {fileID: 433243836}
   m_Layer: 0
-  m_Name: SoundtrackClipsManager
+  m_Name: SoundtrackClipsController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -453,6 +454,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &433243836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 433243834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cf6c186f9da70249a5966f38a66cac2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stageSoundtrackClips:
+  - {fileID: 8300000, guid: f1c73c9b482d7b148bf4d6d8f8f3e769, type: 3}
+  - {fileID: 8300000, guid: 72bd7120c2ddb0e40b1f6ed2ae2d9bdc, type: 3}
+  - {fileID: 8300000, guid: e2febe2c95f62094ca1a2408fa3339a3, type: 3}
+  - {fileID: 8300000, guid: 094835cc165c33941bff580233091e8c, type: 3}
+  - {fileID: 8300000, guid: 45d3e4b68a0f213498d5327d1af93520, type: 3}
+  - {fileID: 8300000, guid: 223738c1cda2b32409601a27123bcd68, type: 3}
+  _currentSoundtrackPlaying: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -462,10 +483,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 519420032}
+  - component: {fileID: 519420033}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   m_Layer: 0
-  m_Name: Main Camera
+  m_Name: PlayerCamera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -489,7 +511,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.10980392, g: 0.10980392, b: 0.10980392, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -511,10 +533,10 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 100
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 6.8
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -545,6 +567,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 780b29185df892a44bfceae5eceef81d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cameraTarget: {fileID: 1048950710}
+  _cameraXDelimitator: 23.8
 --- !u!1 &627561828
 GameObject:
   m_ObjectHideFlags: 0
@@ -913,7 +949,7 @@ MonoBehaviour:
   _rigidBody2D: {fileID: 1048950711}
   _flipGroup: {fileID: 358229253}
   _isFlipped: 0
-  _movimentSpeed: 6
+  _movimentSpeed: 8
 --- !u!114 &1048950714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1600,8 +1636,8 @@ Transform:
   m_GameObject: {fileID: 1882908646}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 18, y: 4, z: 1}
+  m_LocalPosition: {x: 0, y: -0.9265, z: 0}
+  m_LocalScale: {x: 72, y: 5.8528, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 426791982}
@@ -1676,11 +1712,11 @@ SceneRoots:
   - {fileID: 1048950710}
   - {fileID: 1933148876}
   - {fileID: 1251282898}
-  - {fileID: 433243835}
   - {fileID: 1601514311}
   - {fileID: 1494214930}
   - {fileID: 1921242594}
   - {fileID: 426791982}
   - {fileID: 1294517815}
   - {fileID: 908922624}
+  - {fileID: 433243835}
   - {fileID: 627561830}
