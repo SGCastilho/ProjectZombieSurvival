@@ -13,7 +13,7 @@ namespace Core.Controllers
 
         private bool _executingFade;
 
-        public override void Awake() 
+        protected override void Awake() 
         {
             if(_instance != null)
             {
@@ -77,18 +77,24 @@ namespace Core.Controllers
             _executingFade = true;
 
             float time = 0f;
-            float startVol = _audioSource.volume;
+            float startVol = 0f;
             float targetVolume = 0f;
 
-            while(time < _fadeDuration)
+            if(_audioSource.isPlaying)
             {
-                time += Time.deltaTime;
-                _audioSource.volume = Mathf.Lerp(startVol, targetVolume, time / _fadeDuration);
+                startVol = _audioSource.volume;
 
-                yield return null;
+                while(time < _fadeDuration)
+                {
+                    time += Time.deltaTime;
+                    _audioSource.volume = Mathf.Lerp(startVol, targetVolume, time / _fadeDuration);
+
+                    yield return null;
+                }
+
+                _audioSource.Stop();
             }
 
-            _audioSource.Stop();
             _audioSource.clip = clipToPlay;
             _audioSource.volume = _maxVolume;
 
