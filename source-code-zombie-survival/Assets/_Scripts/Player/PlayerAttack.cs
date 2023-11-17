@@ -9,9 +9,15 @@ namespace Core.Player
     public sealed class PlayerAttack : MonoBehaviour
     {
         public delegate GameObject ProjectileSpawn(string poolKey, Vector2 position);
-        public event ProjectileSpawn OnProjectileSpawn;
+        public delegate void ChangeWeapon(Sprite icon, string name);
+        public delegate void CapacityLost(int currentCapacity, int maxCapacity);
 
         private delegate void Shoot();
+
+        public event ProjectileSpawn OnProjectileSpawn;
+        public event ChangeWeapon OnChangeWeapon;
+        public event CapacityLost OnCapacityLost;
+
         private event Shoot OnShoot;
 
         private const int BURST_FREQUENCY = 16;
@@ -66,9 +72,9 @@ namespace Core.Player
             _currentWeaponCapacity = 0;
             _currentFireRateTimer = 0;
             _currentMeleeAttackCouldown = 0;
-
-            _currentWeapon = _startedMeleeWeapon;
         }
+
+        private void Start() => ChangeCurrentWeapon(_startedMeleeWeapon);
 
         private void Update()
         {
@@ -154,6 +160,8 @@ namespace Core.Player
 
                 CheckForShootType();
             }
+
+            OnChangeWeapon?.Invoke(weaponData.Icon, weaponData.Name);
         }
 
         #region All shooting type logics
@@ -195,6 +203,8 @@ namespace Core.Player
                     await Task.Delay(BURST_FREQUENCY);
                 }
             }
+
+            OnCapacityLost?.Invoke(_currentWeaponCapacity, _currentWeapon.Capacity);
         }
 
         private void SingleShootType()
@@ -207,6 +217,8 @@ namespace Core.Player
 
                 _currentWeaponCapacity--;
             }
+
+            OnCapacityLost?.Invoke(_currentWeaponCapacity, _currentWeapon.Capacity);
 
             _currentFireRate = _currentWeapon.FireRate;
             _canAttack = false;
@@ -235,6 +247,8 @@ namespace Core.Player
                     _currentWeaponCapacity -= SHOTGUN_BULLET_INSTANCES;
                 }
             }
+
+            OnCapacityLost?.Invoke(_currentWeaponCapacity, _currentWeapon.Capacity);
 
             _currentFireRate = _currentWeapon.FireRate;
             _canAttack = false;

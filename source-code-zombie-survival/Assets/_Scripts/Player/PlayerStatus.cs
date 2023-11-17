@@ -12,6 +12,12 @@ namespace Core.Player
         public float MaxUltCharge { get => _playerMaxUltimateCharge; }
         #endregion
 
+        public delegate void ChangeHealth(int currentHealth, int maxHealth);
+        public delegate void ChangeUltimateCharge(float currentCharge, float maxCharge);
+
+        public event ChangeHealth OnChangeHealth;
+        public event ChangeUltimateCharge OnChangeUltimateCharge;
+
         [Header("Settings")]
         [SerializeField] private int _playerHealth;
         [SerializeField] private int _playerMaxHealth = 100;
@@ -24,6 +30,8 @@ namespace Core.Player
         private void OnEnable()
         {
             AddHealth(_playerMaxHealth);
+
+            OnChangeUltimateCharge?.Invoke(_playerUltimateCharge, _playerMaxUltimateCharge);
         }
 
         public void AddHealth(int healthToAdd)
@@ -33,6 +41,8 @@ namespace Core.Player
             {
                 _playerHealth = _playerMaxHealth;
             }
+
+            OnChangeHealth?.Invoke(_playerHealth, _playerMaxHealth);
         }
 
         public void RemoveHealth(int healthToRemove)
@@ -44,6 +54,8 @@ namespace Core.Player
 
                 //Death function
             }
+
+            OnChangeHealth?.Invoke(_playerHealth, _playerMaxHealth);
         }
 
         public void AddUltimateCharge(float chargeToAdd)
@@ -53,6 +65,8 @@ namespace Core.Player
             {
                 _playerUltimateCharge = _playerMaxUltimateCharge;
             }
+
+            OnChangeUltimateCharge?.Invoke(_playerUltimateCharge, _playerMaxUltimateCharge);
         }
 
         public void RemoveUltimateCharge(float chargeToRemove)
@@ -62,6 +76,8 @@ namespace Core.Player
             {
                 _playerUltimateCharge = 0;
             }
+
+            OnChangeUltimateCharge?.Invoke(_playerUltimateCharge, _playerMaxUltimateCharge);
         }
     }
 }

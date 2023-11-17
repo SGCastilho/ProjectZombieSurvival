@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: M21Data
   m_EditorClassIdentifier: 
   _weaponName: M21
-  _weaponIcon: {fileID: 0}
+  _weaponIcon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
   _weaponGraphics: {fileID: 0}
   _weaponType: 3
   _weaponShootType: 2

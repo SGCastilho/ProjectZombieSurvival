@@ -1,3 +1,4 @@
+using Core.UI;
 using Core.Player;
 using Core.Managers;
 using UnityEngine;
@@ -9,21 +10,35 @@ namespace Core.Events
         [Header("Classes")]
         [SerializeField] private ObjectPoolingManager _poolingManager;
 
-        private PlayerAttack _playerAttack;
+        [SerializeField] private GameplayUI _gameplayUI;
+
+        private PlayerBehaviour _playerBehaviour;
 
         private void Awake()
         {
-            _playerAttack = GameObject.FindObjectOfType<PlayerAttack>();
+            _playerBehaviour = GameObject.FindObjectOfType<PlayerBehaviour>();
         }
 
         private void OnEnable()
         {
-            _playerAttack.OnProjectileSpawn += _poolingManager.SpawnPooling;
+            _playerBehaviour.Attack.OnProjectileSpawn += _poolingManager.SpawnPooling;
+
+            _playerBehaviour.Attack.OnChangeWeapon += _gameplayUI.SetWeaponHUD;
+            _playerBehaviour.Attack.OnCapacityLost += _gameplayUI.RefreshWeaponHUD;
+
+            _playerBehaviour.Status.OnChangeHealth += _gameplayUI.RefreshHealthHUD;
+            _playerBehaviour.Status.OnChangeUltimateCharge += _gameplayUI.RefreshUltimateHUD;
         }
 
         private void OnDisable()
         {
-            _playerAttack.OnProjectileSpawn -= _poolingManager.SpawnPooling;
+            _playerBehaviour.Attack.OnProjectileSpawn -= _poolingManager.SpawnPooling;
+
+            _playerBehaviour.Attack.OnChangeWeapon -= _gameplayUI.SetWeaponHUD;
+            _playerBehaviour.Attack.OnCapacityLost -= _gameplayUI.RefreshWeaponHUD;
+
+            _playerBehaviour.Status.OnChangeHealth -= _gameplayUI.RefreshHealthHUD;
+            _playerBehaviour.Status.OnChangeUltimateCharge -= _gameplayUI.RefreshUltimateHUD;
         }
     }
 }

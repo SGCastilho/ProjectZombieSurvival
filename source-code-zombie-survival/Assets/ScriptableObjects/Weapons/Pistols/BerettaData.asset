@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: BerettaData
   m_EditorClassIdentifier: 
   _weaponName: Beretta
-  _weaponIcon: {fileID: 0}
+  _weaponIcon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
   _weaponGraphics: {fileID: 0}
   _weaponType: 2
   _weaponShootType: 1
   _weaponDamage: 20
   _weaponCapacity: 16
   _weaponFireRate: 0.2
+  _devNotes: Put your dev notes here.
