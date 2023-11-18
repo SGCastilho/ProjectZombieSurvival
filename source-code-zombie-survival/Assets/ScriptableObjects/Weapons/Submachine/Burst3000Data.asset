@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Burst3000Data
   m_EditorClassIdentifier: 
   _weaponName: Burst 3000
-  _weaponIcon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-  _weaponGraphics: {fileID: 0}
+  _weaponIcon: {fileID: -1365779106, guid: 2121a3cfe03ff514cbd844ede0c47132, type: 3}
+  _weaponGraphics: {fileID: -1365779106, guid: 2121a3cfe03ff514cbd844ede0c47132, type: 3}
   _weaponType: 4
   _weaponShootType: 0
   _weaponDamage: 10
