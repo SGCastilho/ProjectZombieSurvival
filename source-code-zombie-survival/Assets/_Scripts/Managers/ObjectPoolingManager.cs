@@ -6,18 +6,18 @@ namespace Core.Managers
     [System.Serializable]
     public sealed class Pool
     {
+        #region Encapsulation
+        public string Key { get => _poolKey; }
+        public int Size { get => _poolSize; }
+        public GameObject Prefab { get => _poolPrefab; }
+        #endregion
+
         public Pool(string key, int size, GameObject prefab)
         {
             _poolKey = key;
             _poolSize = size;
             _poolPrefab = prefab;
         }
-
-        #region Encapsulation
-        public string Key { get => _poolKey; }
-        public int Size { get => _poolSize; }
-        public GameObject Prefab { get => _poolPrefab; }
-        #endregion
 
         [Header("Pool Settings")]
 
@@ -41,7 +41,9 @@ namespace Core.Managers
 
         private Dictionary<string, Queue<GameObject>> _poolingDictionary;
 
-        private void Awake()
+        private void Awake() => SetupPooling();
+
+        private void SetupPooling()
         {
             _poolingDictionary = new Dictionary<string, Queue<GameObject>>();
 

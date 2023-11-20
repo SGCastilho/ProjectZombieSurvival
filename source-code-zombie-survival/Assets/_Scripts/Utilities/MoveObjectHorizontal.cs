@@ -29,15 +29,19 @@ namespace Core.Utilities
 
         private float _currentMovementSpeed;
 
-        private void Awake()
+        private void Awake() => CacheVariables();
+
+        private void CacheVariables()
         {
             _transform = GetComponent<Transform>();
-            
+
             MoveRight = _moveRight;
             _currentMovementSpeed = _movementSpeed;
         }
 
-        private void OnDisable()
+        private void OnDisable() => ResetObject();
+
+        private void ResetObject()
         {
             transform.position = Vector2.zero;
             transform.eulerAngles = Vector3.zero;
@@ -45,7 +49,9 @@ namespace Core.Utilities
             _currentMovementSpeed = _movementSpeed;
         }
 
-        private void Update()
+        private void Update() => ProjectileMoviment();
+
+        private void ProjectileMoviment()
         {
             _transform.Translate(_currentMovementSpeed * Time.deltaTime * _movimentVector);
         }

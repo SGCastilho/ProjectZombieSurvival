@@ -2,7 +2,8 @@
     "name": "Core.UI",
     "rootNamespace": "Core.UI",
     "references": [
-        "GUID:6055be8ebefd69e48b49212b09b47b2f"
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:7171246ebbcdf074f959c09c173ff0c9"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

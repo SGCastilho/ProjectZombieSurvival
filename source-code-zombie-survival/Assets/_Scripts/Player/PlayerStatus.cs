@@ -12,11 +12,15 @@ namespace Core.Player
         public float MaxUltCharge { get => _playerMaxUltimateCharge; }
         #endregion
 
+        #region Delegates
         public delegate void ChangeHealth(int currentHealth, int maxHealth);
         public delegate void ChangeUltimateCharge(float currentCharge, float maxCharge);
+        #endregion
 
+        #region Events
         public event ChangeHealth OnChangeHealth;
         public event ChangeUltimateCharge OnChangeUltimateCharge;
+        #endregion
 
         [Header("Settings")]
         [SerializeField] private int _playerHealth;
@@ -27,7 +31,9 @@ namespace Core.Player
         [SerializeField] private float _playerUltimateCharge;
         [SerializeField] [Range(1f, 6f)] private float _playerMaxUltimateCharge = 4f;
 
-        private void OnEnable()
+        private void OnEnable() => SetupStatus();
+
+        private void SetupStatus()
         {
             AddHealth(_playerMaxHealth);
 

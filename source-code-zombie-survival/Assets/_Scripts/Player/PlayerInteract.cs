@@ -9,13 +9,16 @@ namespace Core.Player
         public bool CanInteract { get => _canInteract; }
         #endregion
 
+        #region Constants
         private const string INTERACTABLE_TAG = "Interactable";
+        #endregion
 
         [Header("Classes")]
         [SerializeField] private PlayerBehaviour _behaviour;
 
-        private bool _canInteract;
         private Interactable _interatactableObject;
+        
+        private bool _canInteract;
 
         private void OnEnable() 
         {

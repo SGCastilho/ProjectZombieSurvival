@@ -10,14 +10,8 @@ namespace Core.AnimationEvents
         [Header("Settings")]
         [SerializeField] private string _animatorKey;
 
-        public void AnimationStarted()
-        {
-            _animator.SetBool(_animatorKey, false);
-        }
+        public void AnimationStarted() => _animator.SetBool(_animatorKey, false);
 
-        public void AnimationFinish()
-        {
-            _animator.SetBool(_animatorKey, true);
-        }
+        public void AnimationFinish() => _animator.SetBool(_animatorKey, true);
     }
 }

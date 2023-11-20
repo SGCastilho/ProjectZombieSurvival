@@ -15,9 +15,10 @@ namespace Core.Interactables
         #region Encapsulation
         public InteractableType Type { get => _interactableType; }
 
+        public WeaponData WeaponRecovery { get => _weaponRecovery; }
+
         public float HealthRecovery { get => _healthRecovery; }
         public float UltimateRecovery { get => _ultimateRecovery; }
-        public WeaponData WeaponRecovery { get => _weaponRecovery; }
         #endregion
 
         [Header("Settings")]

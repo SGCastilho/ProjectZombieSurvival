@@ -37,7 +37,7 @@ namespace Core.AnimationEvents
 
             _rayCastTarget = target.gameObject;
 
-            OnRaycastDrawed.Invoke();
+            OnRaycastDrawed?.Invoke();
         }
 
         #region Editor Methods

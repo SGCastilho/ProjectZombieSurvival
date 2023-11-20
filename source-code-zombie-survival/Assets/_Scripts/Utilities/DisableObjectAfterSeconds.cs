@@ -9,15 +9,19 @@ namespace Core.Utilities
 
         private float _currentTimeToDisable;
 
-        private void OnDisable()
+        private void OnDisable() => ResetTimer();
+
+        private void ResetTimer()
         {
             _currentTimeToDisable = 0;
         }
 
-        private void Update()
+        private void Update() => Timer();
+
+        private void Timer()
         {
             _currentTimeToDisable += Time.deltaTime;
-            if(_currentTimeToDisable >= _timeToDisable)
+            if (_currentTimeToDisable >= _timeToDisable)
             {
                 gameObject.SetActive(false);
             }

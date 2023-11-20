@@ -8,26 +8,33 @@ namespace Core.Player
 {
     public sealed class PlayerAttack : MonoBehaviour
     {
+        #region Delegates
         public delegate GameObject ProjectileSpawn(string poolKey, Vector2 position);
         public delegate void ChangeWeapon(Sprite icon, string name);
         public delegate void CapacityLost(int currentCapacity, int maxCapacity);
 
         private delegate void Shoot();
+        #endregion
 
+        #region Events
         public event ProjectileSpawn OnProjectileSpawn;
         public event ChangeWeapon OnChangeWeapon;
         public event CapacityLost OnCapacityLost;
 
         private event Shoot OnShoot;
+        #endregion
 
+        #region Constants
         private const int BURST_FREQUENCY = 16;
         private const int BURST_BULLET_FREQUENCY = 3;
         private const int SHOTGUN_BULLET_INSTANCES = 3;
 
         private const string PROJECTILE_KEY = "projectile_default";
+        #endregion
 
         #region Encapsulation
         public WeaponData CurrentWeapon { get => _currentWeapon; }
+        public Sprite SetWeaponGraphics { set => _currentWeaponSprite.sprite = value; }
         public WeaponData MeleeWeapon { get => _startedMeleeWeapon; set => _startedMeleeWeapon = value; }
 
         public int CurrentCapacity { get => _currentWeaponCapacity; }
@@ -54,6 +61,7 @@ namespace Core.Player
         [Space(8)]
 
         [SerializeField] private WeaponData _currentWeapon;
+        [SerializeField] private SpriteRenderer _currentWeaponSprite;
         [SerializeField] private int _currentWeaponCapacity;
 
         private bool _canAttack;
@@ -64,7 +72,9 @@ namespace Core.Player
         private float _currentFireRate;
         private float _currentFireRateTimer;
 
-        private void Awake()
+        private void Awake() => SetupAttacks();
+
+        private void SetupAttacks()
         {
             _canAttack = true;
             _meleeInCouldown = false;
@@ -78,20 +88,29 @@ namespace Core.Player
 
         private void Update()
         {
-            if(!_canAttack)
+            AttackTimer();
+            MeleeCouldownTimer();
+        }
+
+        private void AttackTimer()
+        {
+            if (!_canAttack)
             {
                 _currentFireRateTimer += Time.deltaTime;
-                if(_currentFireRateTimer >= _currentFireRate)
+                if (_currentFireRateTimer >= _currentFireRate)
                 {
                     _canAttack = true;
                     _currentFireRateTimer = 0;
                 }
             }
+        }
 
-            if(_meleeInCouldown)
+        private void MeleeCouldownTimer()
+        {
+            if (_meleeInCouldown)
             {
                 _currentMeleeAttackCouldown += Time.deltaTime;
-                if(_currentMeleeAttackCouldown >= _meleeAttackCouldown)
+                if (_currentMeleeAttackCouldown >= _meleeAttackCouldown)
                 {
                     _meleeInCouldown = false;
                     _currentMeleeAttackCouldown = 0;
@@ -115,14 +134,11 @@ namespace Core.Player
                 {
                     _currentWeaponCapacity = 0;
                     _behaviour.WeaponRotation.CheckWeaponState();
-
-                    Debug.Log("Sem capacidade");
                 }
             }
             else{ MeleeAttack(); }
         }
 
-        #region Melee attack functions
         public void MeleeAttack()
         {
             if(!_behaviour.Animation.IsMeleeAnimationFinish || _meleeInCouldown) return;
@@ -139,7 +155,6 @@ namespace Core.Player
         {
             Debug.Log("ApplyDamage");
         }
-        #endregion
 
         public void UltimateAttack()
         {
@@ -164,7 +179,6 @@ namespace Core.Player
             OnChangeWeapon?.Invoke(weaponData.Icon, weaponData.Name);
         }
 
-        #region All shooting type logics
         private void CheckForShootType()
         {
             OnShoot = null;
@@ -253,6 +267,5 @@ namespace Core.Player
             _currentFireRate = _currentWeapon.FireRate;
             _canAttack = false;
         }
-        #endregion
     }
 }

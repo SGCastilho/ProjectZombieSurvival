@@ -16,7 +16,9 @@ namespace Core.Player
 
         private float _horizontalAxis;
 
-        private void Awake()
+        private void Awake() => CacheVariables();
+
+        private void CacheVariables()
         {
             _inputActions = new GameplayInputActions();
         }
@@ -36,7 +38,7 @@ namespace Core.Player
             _horizontalAxis = _inputActions.Gameplay.HorizontalAxis.ReadValue<float>();
         }
 
-        #region Manage all CallbackContext Inputs
+        #region CallbackContext Inputs
         public void AttackInput(InputAction.CallbackContext context)
         {
             _behaviour.Attack.RangedAttack();

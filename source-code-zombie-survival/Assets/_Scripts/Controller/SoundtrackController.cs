@@ -5,12 +5,12 @@ namespace Core.Controllers
 {
     public sealed class SoundtrackController : Singleton<SoundtrackController>
     {
-        private AudioSource _audioSource;
-
         [Header("Settings")]
         [SerializeField] [Range(0.2f, 1f)] private float _maxVolume = 0.6f;
         [SerializeField] [Range(0.2f, 1f)] private float _fadeDuration = 0.6f;
 
+        private AudioSource _audioSource;
+        
         private bool _executingFade;
 
         protected override void Awake() 

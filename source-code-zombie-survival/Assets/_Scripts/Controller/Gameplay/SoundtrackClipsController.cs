@@ -31,9 +31,11 @@ namespace Core.Controllers
                 return;
         }
 
-        private void OnEnable() 
+        private void OnEnable() => SetupClips();
+
+        private void SetupClips()
         {
-            _maxStageSoundtrackClips = _stageSoundtrackClips.Length-1;
+            _maxStageSoundtrackClips = _stageSoundtrackClips.Length - 1;
 
             _currentSoundtrackPlaying = Random.Range(0, _maxStageSoundtrackClips);
 

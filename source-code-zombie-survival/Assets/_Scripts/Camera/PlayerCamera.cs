@@ -14,9 +14,11 @@ namespace Core.Camera
         private Transform _transform;
         private Vector3 _cameraVector;
 
-        private void Awake() 
+        private void Awake() => CacheVariables();
+
+        private void CacheVariables()
         {
-            if(_cameraTarget == null) 
+            if (_cameraTarget == null)
             {
                 _cameraTarget = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
             }
@@ -24,11 +26,13 @@ namespace Core.Camera
             _transform = gameObject.transform;
         }
 
-        private void Update()
+        private void Update() => CameraFollow();
+
+        private void CameraFollow()
         {
             _cameraVector = new Vector3(_cameraTarget.position.x, _transform.position.y, _transform.position.z);
 
-            if(_cameraVector.x > _cameraXDelimitator || _cameraVector.x < -_cameraXDelimitator) return;
+            if (_cameraVector.x > _cameraXDelimitator || _cameraVector.x < -_cameraXDelimitator) return;
 
             _transform.position = _cameraVector;
         }

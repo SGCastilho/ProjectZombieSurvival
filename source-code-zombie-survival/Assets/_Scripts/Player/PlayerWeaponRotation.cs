@@ -6,13 +6,19 @@ namespace Core.Player
 {
     public sealed class PlayerWeaponRotation : MonoBehaviour
     {
+        public delegate void CheckRotationList(WeaponData[] weaponRotation);
+
+        public event CheckRotationList OnCheckRotationList;
+
         [Header("Classes")]
         [SerializeField] private PlayerBehaviour _behaviour;
 
         [Header("Settings")]
         [SerializeField] private List<WeaponData> _weaponRotationList;
 
-        private void Awake()
+        private void Awake() => CacheVariables();
+
+        private void CacheVariables()
         {
             _weaponRotationList = new List<WeaponData>();
         }
@@ -39,10 +45,13 @@ namespace Core.Player
                 {
                     AddWeaponFromRotation();
                 }
+
+                OnCheckRotationList?.Invoke(_weaponRotationList.ToArray());
             }
             else if(_weaponRotationList.Count == 0)
             {
                 _behaviour.Attack.ChangeCurrentWeapon(_behaviour.Attack.MeleeWeapon);
+                _behaviour.Attack.SetWeaponGraphics = _behaviour.Attack.MeleeWeapon.Graphics;
             }
         }
 
@@ -54,6 +63,7 @@ namespace Core.Player
             _weaponRotationList.Remove(weaponToEquip);
 
             _behaviour.Attack.ChangeCurrentWeapon(weaponToEquip);
+            _behaviour.Attack.SetWeaponGraphics = weaponToEquip.Graphics;
         }
     }
 }
