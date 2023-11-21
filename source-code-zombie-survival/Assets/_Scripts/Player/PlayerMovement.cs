@@ -29,7 +29,7 @@ namespace Core.Player
         private void FixedUpdate()
         {
             Moviment();
-            FlipCharacter();
+            FlipGraphics();
         }
 
         private void Moviment()
@@ -40,7 +40,7 @@ namespace Core.Player
             _rigidBody2D.velocity = _finalVelocity;
         }
 
-        private void FlipCharacter()
+        private void FlipGraphics()
         {
             if (_playerBehaviour.Input.HorizontalAxis > 0)
             {

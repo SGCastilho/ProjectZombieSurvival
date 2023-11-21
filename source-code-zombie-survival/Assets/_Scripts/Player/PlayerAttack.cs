@@ -257,9 +257,9 @@ namespace Core.Player
                     int randomizeRotation = Random.Range(-2, 6);    
 
                     projectile.transform.eulerAngles = randomizeRotation * Vector3.forward;
-
-                    _currentWeaponCapacity -= SHOTGUN_BULLET_INSTANCES;
                 }
+
+                _currentWeaponCapacity -= SHOTGUN_BULLET_INSTANCES;
             }
 
             OnCapacityLost?.Invoke(_currentWeaponCapacity, _currentWeapon.Capacity);

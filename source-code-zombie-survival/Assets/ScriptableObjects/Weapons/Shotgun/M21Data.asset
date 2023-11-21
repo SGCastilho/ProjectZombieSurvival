@@ -18,6 +18,6 @@ MonoBehaviour:
   _weaponType: 3
   _weaponShootType: 2
   _weaponDamage: 20
-  _weaponCapacity: 18
-  _weaponFireRate: 1.2
+  _weaponCapacity: 9
+  _weaponFireRate: 1
   _devNotes: "Shotgun capacity most have to be MUTIPLE \nof THREE."

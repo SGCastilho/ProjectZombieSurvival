@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddab6ce351170464981e966fdc3f2e38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movementSpeed: 12
+  _movementSpeed: 20
   _moveRight: 1
 --- !u!114 &644297677941364381
 MonoBehaviour:
@@ -160,7 +160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b158dfb10ca8964c9527803d4c2fbe7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeToDisable: 4
+  _timeToDisable: 2
 --- !u!114 &1649202183662081215
 MonoBehaviour:
   m_ObjectHideFlags: 0
