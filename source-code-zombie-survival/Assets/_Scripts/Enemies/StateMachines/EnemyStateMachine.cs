@@ -9,10 +9,15 @@ namespace Core.Enemies
         #region Encapsulation
         public PlayerBehaviour Player { get => _playerBehaviour; }
         public EnemyBehaviour Behaviour { get => _enemyBehaviour; }
+
+        internal float AttackRange { get => _attackRange; }
         #endregion
 
         [Header("Exclusive Classes")]
         [SerializeField] private EnemyBehaviour _enemyBehaviour;
+
+        [Header("Exclusive Settings")]
+        [SerializeField] [Range(1f, 20f)] private float _attackRange = 2f;
 
         private PlayerBehaviour _playerBehaviour;
 

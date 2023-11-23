@@ -12,9 +12,6 @@ namespace Core.Enemies
 
         [SerializeField] private State _nextState;
 
-        [Header("Exclusive Settings")]
-        [SerializeField] [Range(1f, 20f)] private float _attackRange = 2f;
-
         #region Editor Variable
         #if UNITY_EDITOR
         [SerializeField] private bool _showAttackRangeGizmos = false;
@@ -25,9 +22,11 @@ namespace Core.Enemies
 
         public override void PlayState()
         {
+            _stateMachine.Behaviour.Moviment.CanMove = true;
+            
             _currentRange = _stateMachine.CalculateDistanceFromPlayer();
 
-            if(_currentRange <= _attackRange)
+            if(_currentRange <= _stateMachine.AttackRange)
             {
                 _stateMachine.Behaviour.Moviment.CanMove = false;
 
@@ -42,7 +41,7 @@ namespace Core.Enemies
             if(_showAttackRangeGizmos)
             {
                 Gizmos.color = Color.yellow;
-                Gizmos.DrawWireSphere(transform.position, _attackRange);
+                Gizmos.DrawWireSphere(transform.position, _stateMachine.AttackRange);
             }
         }
         #endif

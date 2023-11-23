@@ -10,7 +10,13 @@ namespace Core.Enemies
         
         public override void PlayState()
         {
-            
+            _stateMachine.Behaviour.Moviment.CanMove = false;
+
+            Debug.Log("Dead");
+
+            _stateMachine.Behaviour.gameObject.SetActive(false);
+
+            //Dropar algum coletavel
         }
     }
 }

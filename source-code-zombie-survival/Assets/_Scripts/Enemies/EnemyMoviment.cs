@@ -60,7 +60,7 @@ namespace Core.Enemies
             }
         }
 
-        private void FlipGraphics()
+        internal void FlipGraphics()
         {
             _isFlipped = FlipToPlayer();
 
