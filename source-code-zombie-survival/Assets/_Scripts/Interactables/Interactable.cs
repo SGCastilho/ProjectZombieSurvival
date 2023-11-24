@@ -7,7 +7,7 @@ namespace Core.Interactables
     {
         HEALTH,
         ULTIMATE,
-        WEAPON_RANDOMIZER
+        WEAPON
     }
 
     public sealed class Interactable : MonoBehaviour

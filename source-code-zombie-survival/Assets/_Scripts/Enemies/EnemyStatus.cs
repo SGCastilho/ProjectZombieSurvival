@@ -1,11 +1,16 @@
-using Core.ScriptableObjects;
 using Core.Utilities;
+using Core.Interfaces;
+using Core.ScriptableObjects;
 using UnityEngine;
 
 namespace Core.Enemies
 {
-    public sealed class EnemyStatus : MonoBehaviour
+    public sealed class EnemyStatus : MonoBehaviour, IDamagable
     {
+        #region Encapsulation
+        public int Damage { get => _enemyDamage; }
+        #endregion
+
         [Header("Classes")]
         [SerializeField] private EnemyData _enemyData;
 
@@ -64,5 +69,9 @@ namespace Core.Enemies
 
             _scaledDamage += damageScaling;
         }
+
+        public void DoDamage(int amount) => RemoveHealth(amount);
+
+        public void Recovery(int amount) => AddHealth(amount);
     }
 }

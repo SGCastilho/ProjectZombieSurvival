@@ -1,9 +1,7 @@
 {
-    "name": "Core.Projectiles",
-    "rootNamespace": "Core.Projectiles",
-    "references": [
-        "GUID:df763327f7e4a14428a5def2db88c33c"
-    ],
+    "name": "Core.Interfaces",
+    "rootNamespace": "Core.Interfaces",
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

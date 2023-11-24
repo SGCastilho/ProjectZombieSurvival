@@ -1,4 +1,6 @@
 using Core.Utilities;
+using Core.Interfaces;
+using Core.Projectiles;
 using Core.AnimationEvents;
 using Core.ScriptableObjects;
 using System.Threading.Tasks;
@@ -151,9 +153,11 @@ namespace Core.Player
             _meleeInCouldown = true;
         }
 
-        public void ApplyMeleeDamage()
+        public void ApplyMeleeDamage(GameObject damagableObject)
         {
-            Debug.Log("ApplyDamage");
+            var enemyToDamage = damagableObject.GetComponent<IDamagable>();
+
+            enemyToDamage.DoDamage(_startedMeleeWeapon.Damage);
         }
 
         public void UltimateAttack()
@@ -211,6 +215,7 @@ namespace Core.Player
                     var projectile = OnProjectileSpawn(PROJECTILE_KEY, _shootPosition.position);
 
                     projectile.GetComponent<MoveObjectHorizontal>().MoveRight = !_behaviour.Moviment.IsFlipped;
+                    projectile.GetComponent<ProjectileStats>().Damage = _currentWeapon.Damage;
 
                     _currentWeaponCapacity--;
 
@@ -228,6 +233,7 @@ namespace Core.Player
                 var projectile = OnProjectileSpawn(PROJECTILE_KEY, _shootPosition.position);
 
                 projectile.GetComponent<MoveObjectHorizontal>().MoveRight = !_behaviour.Moviment.IsFlipped;
+                projectile.GetComponent<ProjectileStats>().Damage = _currentWeapon.Damage;
 
                 _currentWeaponCapacity--;
             }
@@ -257,6 +263,8 @@ namespace Core.Player
                     int randomizeRotation = Random.Range(-2, 6);    
 
                     projectile.transform.eulerAngles = randomizeRotation * Vector3.forward;
+
+                    projectile.GetComponent<ProjectileStats>().Damage = _currentWeapon.Damage;
                 }
 
                 _currentWeaponCapacity -= SHOTGUN_BULLET_INSTANCES;

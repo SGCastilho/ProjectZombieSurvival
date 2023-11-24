@@ -12,11 +12,9 @@ namespace Core.Enemies
         {
             _stateMachine.Behaviour.Moviment.CanMove = false;
 
-            Debug.Log("Dead");
+            _stateMachine.Behaviour.Drops.SpawnDrop();
 
             _stateMachine.Behaviour.gameObject.SetActive(false);
-
-            //Dropar algum coletavel
         }
     }
 }

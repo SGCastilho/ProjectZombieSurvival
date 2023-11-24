@@ -1,5 +1,6 @@
 using Core.UI;
 using Core.Player;
+using Core.Enemies;
 using Core.Managers;
 using UnityEngine;
 
@@ -14,14 +15,29 @@ namespace Core.Events
 
         private PlayerBehaviour _playerBehaviour;
 
+        private EnemyBehaviour[] _spawnedEnemies;
+
         private void Awake() => CacheVariables();
 
         private void CacheVariables()
         {
-            _playerBehaviour = GameObject.FindObjectOfType<PlayerBehaviour>();
+            _playerBehaviour = FindObjectOfType<PlayerBehaviour>();
+
+            _spawnedEnemies = FindObjectsOfType<EnemyBehaviour>();
+
+            if(_spawnedEnemies.Length <= 0)
+            {
+                Debug.Log("is null");
+            }
         }
 
-        private void OnEnable() => EnablePlayerEvents();
+        private void OnEnable() => EnableEvents();
+
+        private void EnableEvents()
+        {
+            EnablePlayerEvents();
+            EnableEnemiesEvents();
+        }
 
         private void EnablePlayerEvents()
         {
@@ -36,7 +52,21 @@ namespace Core.Events
             _playerBehaviour.Status.OnChangeUltimateCharge += _gameplayUI.RefreshUltimateHUD;
         }
 
-        private void OnDisable() => DisablePlayerEvents();
+        private void EnableEnemiesEvents()
+        {
+            foreach(EnemyBehaviour enemy in _spawnedEnemies)
+            {
+                enemy.Drops.OnDropSpawn += _poolingManager.SpawnPooling;
+            }
+        }
+
+        private void OnDisable() => DisableEvents();
+
+        private void DisableEvents()
+        {
+            DisablePlayerEvents();
+            DisableEnemiesEvents();
+        }
 
         private void DisablePlayerEvents()
         {
@@ -49,6 +79,14 @@ namespace Core.Events
 
             _playerBehaviour.Status.OnChangeHealth -= _gameplayUI.RefreshHealthHUD;
             _playerBehaviour.Status.OnChangeUltimateCharge -= _gameplayUI.RefreshUltimateHUD;
+        }
+
+        private void DisableEnemiesEvents()
+        {
+            foreach(EnemyBehaviour enemy in _spawnedEnemies)
+            {
+                enemy.Drops.OnDropSpawn -= _poolingManager.SpawnPooling;
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
 using Core.Utilities;
+using Core.Interfaces;
 using UnityEngine;
 
 namespace Core.Enemies
@@ -54,6 +55,13 @@ namespace Core.Enemies
                     }
                 }
             }
+        }
+
+        public void ApplyDamageToPlayer()
+        {
+            var ApplyDamage = _stateMachine.Player.GetComponent<IDamagable>();
+
+            ApplyDamage.DoDamage(_stateMachine.Behaviour.Status.Damage);
         }
     }
 }

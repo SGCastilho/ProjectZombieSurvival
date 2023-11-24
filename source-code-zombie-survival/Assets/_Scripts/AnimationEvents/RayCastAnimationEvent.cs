@@ -19,7 +19,7 @@ namespace Core.AnimationEvents
 
         [Space(8)]
 
-        [SerializeField] private UnityEvent OnRaycastDrawed;
+        [SerializeField] private UnityEvent<GameObject> OnRaycastDrawed;
         
         private GameObject _rayCastTarget;
 
@@ -37,7 +37,7 @@ namespace Core.AnimationEvents
 
             _rayCastTarget = target.gameObject;
 
-            OnRaycastDrawed?.Invoke();
+            OnRaycastDrawed?.Invoke(_rayCastTarget);
         }
 
         #region Editor Methods

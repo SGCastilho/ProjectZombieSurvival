@@ -1,3 +1,4 @@
+using Core.Interfaces;
 using UnityEngine;
 
 namespace Core.Projectiles
@@ -13,7 +14,11 @@ namespace Core.Projectiles
 
         public void ApplyDamageToEnemy(GameObject enemy)
         {
-            //Aplicar dano ao inimigo
+            var applyDamage = enemy.GetComponent<IDamagable>();
+
+            applyDamage.DoDamage(_projectileDamage);
+
+            gameObject.SetActive(false);
         }
     }
 }

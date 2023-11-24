@@ -36,6 +36,10 @@ namespace Core.Managers
 
     public sealed class ObjectPoolingManager : MonoBehaviour
     {
+        #region Encapsulation
+
+        #endregion
+    
         [Header("Settings")]
         [SerializeField] private List<Pool> _poolingList;
 

@@ -45,7 +45,7 @@ namespace Core.Player
                 case InteractableType.ULTIMATE:
                     UltimateRecovery();
                     break;
-                case InteractableType.WEAPON_RANDOMIZER:
+                case InteractableType.WEAPON:
                     WeaponRecovery();
                     break;
             }

@@ -1,8 +1,9 @@
+using Core.Interfaces;
 using UnityEngine;
 
 namespace Core.Player
 {
-    public sealed class PlayerStatus : MonoBehaviour
+    public sealed class PlayerStatus : MonoBehaviour, IDamagable
     {
         #region Encapsulation
         public int Health { get => _playerHealth; }
@@ -85,5 +86,9 @@ namespace Core.Player
 
             OnChangeUltimateCharge?.Invoke(_playerUltimateCharge, _playerMaxUltimateCharge);
         }
+
+        public void DoDamage(int amount) => RemoveHealth(amount);
+        
+        public void Recovery(int amount) => AddHealth(amount);
     }
 }
