@@ -3593,30 +3593,37 @@ MonoBehaviour:
     _poolKey: projectile_default
     _poolSize: 20
     _poolPrefab: {fileID: 5431563606408935891, guid: c9bc79e34d9d8f8408ce94367e1bcff6, type: 3}
+    _isEnemy: 0
   - _poolName: Collectable Health
     _poolKey: collectable_health
     _poolSize: 6
     _poolPrefab: {fileID: 3075866562288018374, guid: 16c220c1230e9bf4aad42f4db7edc5df, type: 3}
+    _isEnemy: 0
   - _poolName: Collectable Weapon Pistol
     _poolKey: collectable_weapon_pistol
     _poolSize: 2
     _poolPrefab: {fileID: 5043846187372660057, guid: 05be403220aafa94b8a553f28fa4944c, type: 3}
+    _isEnemy: 0
   - _poolName: Collectable Weapon Submachine
     _poolKey: collectable_weapon_submachine
     _poolSize: 2
     _poolPrefab: {fileID: 7243422624614594496, guid: 18ec8ec928fb66640a21e9903526d6b4, type: 3}
+    _isEnemy: 0
   - _poolName: Collectable Weapon Shotgun
     _poolKey: collectable_weapon_shotgun
     _poolSize: 2
     _poolPrefab: {fileID: 9109377977960318924, guid: 5c307858ebbe7c842b6317642b443702, type: 3}
+    _isEnemy: 0
   - _poolName: Enemy Slow Zombie
     _poolKey: enemy_slow_zombie
     _poolSize: 10
     _poolPrefab: {fileID: 6208961974001527845, guid: 733af8e1d17fd4245a43adb6aca1836a, type: 3}
+    _isEnemy: 1
   - _poolName: Enemy Slow Zombie
     _poolKey: enemy_medium_zombie
     _poolSize: 6
     _poolPrefab: {fileID: 7961544241168795699, guid: 7dac26228e974b8438664992108dd43a, type: 3}
+    _isEnemy: 1
 --- !u!4 &1251282898
 Transform:
   m_ObjectHideFlags: 0

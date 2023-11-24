@@ -23,12 +23,21 @@ namespace Core.Events
         {
             _playerBehaviour = FindObjectOfType<PlayerBehaviour>();
 
-            _spawnedEnemies = FindObjectsOfType<EnemyBehaviour>();
+            CacheEnemiesInScene();
+        }
 
-            if(_spawnedEnemies.Length <= 0)
+        private void CacheEnemiesInScene()
+        {
+            GameObject[] enemiesInScene = _poolingManager.EnemiesInScene.ToArray();
+
+            _spawnedEnemies = new EnemyBehaviour[enemiesInScene.Length];
+
+            for (int i = 0; i < _spawnedEnemies.Length; i++)
             {
-                Debug.Log("is null");
+                _spawnedEnemies[i] = enemiesInScene[i].GetComponent<EnemyBehaviour>();
             }
+
+            _poolingManager.EnemiesInScene.Clear();
         }
 
         private void OnEnable() => EnableEvents();

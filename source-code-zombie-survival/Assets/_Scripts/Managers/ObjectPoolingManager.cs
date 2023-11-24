@@ -10,13 +10,16 @@ namespace Core.Managers
         public string Key { get => _poolKey; }
         public int Size { get => _poolSize; }
         public GameObject Prefab { get => _poolPrefab; }
+
+        public bool IsEnemy { get => _isEnemy; }
         #endregion
 
-        public Pool(string key, int size, GameObject prefab)
+        public Pool(string key, int size, GameObject prefab, bool isEnemy)
         {
             _poolKey = key;
             _poolSize = size;
             _poolPrefab = prefab;
+            _isEnemy = isEnemy;
         }
 
         [Header("Pool Settings")]
@@ -32,18 +35,24 @@ namespace Core.Managers
         [SerializeField] private string _poolKey = "pool_key";
         [SerializeField] private int _poolSize = 0;
         [SerializeField] private GameObject _poolPrefab;
+
+        [Space(8)]
+
+        [SerializeField] private bool _isEnemy;
     }
 
     public sealed class ObjectPoolingManager : MonoBehaviour
     {
         #region Encapsulation
-
+        public List<GameObject> EnemiesInScene { get => _enemiesInScene; }
         #endregion
     
         [Header("Settings")]
         [SerializeField] private List<Pool> _poolingList;
 
         private Dictionary<string, Queue<GameObject>> _poolingDictionary;
+        
+        private List<GameObject> _enemiesInScene;
 
         private void Awake() => SetupPooling();
 
@@ -61,11 +70,11 @@ namespace Core.Managers
             _poolingList.Add(pool);
         }
 
-        public void AddPool(string poolKey, int poolSize, GameObject poolPrefab)
+        public void AddPool(string poolKey, int poolSize, GameObject poolPrefab, bool isEnemy)
         {
             if(poolKey == null || poolSize <= 0 || poolPrefab == null) return;
 
-            var newPool = new Pool(poolKey, poolSize, poolPrefab);
+            var newPool = new Pool(poolKey, poolSize, poolPrefab, isEnemy);
 
             _poolingList.Add(newPool);
         }
@@ -73,6 +82,8 @@ namespace Core.Managers
         private void InitPooling()
         {
             if(_poolingList.Count <= 0) return;
+
+            _enemiesInScene = new List<GameObject>();
 
             foreach(Pool pool in _poolingList)
             {
@@ -84,6 +95,11 @@ namespace Core.Managers
                     poolPrefab.SetActive(false);
                     
                     queue.Enqueue(poolPrefab);
+
+                    if(pool.IsEnemy)
+                    {
+                        _enemiesInScene.Add(poolPrefab);
+                    }
                 }
 
                 _poolingDictionary.Add(pool.Key, queue);
