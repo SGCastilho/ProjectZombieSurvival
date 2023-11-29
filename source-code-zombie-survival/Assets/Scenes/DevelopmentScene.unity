@@ -1136,37 +1136,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 484625026}
   m_CullTransparentMesh: 1
---- !u!1 &505302672
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 505302673}
-  m_Layer: 0
-  m_Name: LeftSpawnPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &505302673
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 505302672}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1719117699}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -2390,6 +2359,68 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1024264251}
   m_CullTransparentMesh: 1
+--- !u!1 &1032796845
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1032796846}
+  - component: {fileID: 1032796847}
+  m_Layer: 0
+  m_Name: WaveSpawnManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1032796846
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1032796845}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1032796847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1032796845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4272bf558598007408bb78f67c60ec3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _poolingManager: {fileID: 1251282897}
+  _enemiesSpawner:
+  - _enemyName: Slow Zombie
+    _enemySpawnKey: enemy_slow_zombie
+    _waveApparition: 0
+    _readyToSpawn: 1
+    _maxEnemySpawns: 12
+    _currentSpawnsInScene: 0
+    _apparitionChance: 1
+  - _enemyName: Medium Zombie
+    _enemySpawnKey: enemy_medium_zombie
+    _waveApparition: 1
+    _readyToSpawn: 0
+    _maxEnemySpawns: 0
+    _currentSpawnsInScene: 0
+    _apparitionChance: 0.6
+  _spawnDistanceX: 14
+  _spawnTimer: 1.8
 --- !u!1 &1048950707
 GameObject:
   m_ObjectHideFlags: 0
@@ -3625,36 +3656,49 @@ MonoBehaviour:
     _poolSize: 20
     _poolPrefab: {fileID: 5431563606408935891, guid: c9bc79e34d9d8f8408ce94367e1bcff6, type: 3}
     _isEnemy: 0
+    _isBoss: 0
   - _poolName: Collectable Health
     _poolKey: collectable_health
     _poolSize: 6
     _poolPrefab: {fileID: 3075866562288018374, guid: 16c220c1230e9bf4aad42f4db7edc5df, type: 3}
     _isEnemy: 0
+    _isBoss: 0
   - _poolName: Collectable Weapon Pistol
     _poolKey: collectable_weapon_pistol
     _poolSize: 2
     _poolPrefab: {fileID: 5043846187372660057, guid: 05be403220aafa94b8a553f28fa4944c, type: 3}
     _isEnemy: 0
+    _isBoss: 0
   - _poolName: Collectable Weapon Submachine
     _poolKey: collectable_weapon_submachine
     _poolSize: 2
     _poolPrefab: {fileID: 7243422624614594496, guid: 18ec8ec928fb66640a21e9903526d6b4, type: 3}
     _isEnemy: 0
+    _isBoss: 0
   - _poolName: Collectable Weapon Shotgun
     _poolKey: collectable_weapon_shotgun
     _poolSize: 2
     _poolPrefab: {fileID: 9109377977960318924, guid: 5c307858ebbe7c842b6317642b443702, type: 3}
     _isEnemy: 0
+    _isBoss: 0
   - _poolName: Enemy Slow Zombie
     _poolKey: enemy_slow_zombie
-    _poolSize: 20
+    _poolSize: 14
     _poolPrefab: {fileID: 6208961974001527845, guid: 733af8e1d17fd4245a43adb6aca1836a, type: 3}
     _isEnemy: 1
-  - _poolName: Enemy Slow Zombie
+    _isBoss: 0
+  - _poolName: Enemy Medium Zombie
     _poolKey: enemy_medium_zombie
-    _poolSize: 12
+    _poolSize: 8
     _poolPrefab: {fileID: 7961544241168795699, guid: 7dac26228e974b8438664992108dd43a, type: 3}
     _isEnemy: 1
+    _isBoss: 0
+  - _poolName: Boss Slow Zombie
+    _poolKey: boss_slow_zombie
+    _poolSize: 1
+    _poolPrefab: {fileID: 2596261839245479744, guid: 97877708faaa0334d81e4164efb2551c, type: 3}
+    _isEnemy: 0
+    _isBoss: 1
 --- !u!4 &1251282898
 Transform:
   m_ObjectHideFlags: 0
@@ -4374,37 +4418,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1614105411
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1614105412}
-  m_Layer: 0
-  m_Name: RightSpawnPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1614105412
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1614105411}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1719117699}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1644211687
 GameObject:
   m_ObjectHideFlags: 0
@@ -4610,76 +4623,6 @@ RectTransform:
   m_AnchoredPosition: {x: 140, y: -160}
   m_SizeDelta: {x: 280, y: 60}
   m_Pivot: {x: 0.5, y: 1}
---- !u!1 &1719117697
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1719117699}
-  - component: {fileID: 1719117698}
-  m_Layer: 0
-  m_Name: EnemiesSpawnerManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1719117698
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1719117697}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b5bc2a87d0858b4ea4f5c55fe0e7dd7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _poolingManager: {fileID: 1251282897}
-  _enemiesSpawner:
-  - _enemyKey: enemy_slow_zombie
-    _roundApparition: 0
-    _readyToSpawn: 1
-    _enemyMaxSpawns: 20
-    _currentEnemyInScene: 0
-  - _enemyKey: enemy_medium_zombie
-    _roundApparition: 1
-    _readyToSpawn: 0
-    _enemyMaxSpawns: 12
-    _currentEnemyInScene: 0
-  _leftSpawnPointTransform: {fileID: 505302673}
-  _rightSpawnPointTransform: {fileID: 1614105412}
-  _minSpawnXPosistion: 14
-  _maxSpawnXPosistion: 16
-  _maxWaveRounds: 5
-  _bossWaveRound: 5
-  _maxEnemiesPerRound: 8
-  _enemiesPerRoundScaling: 0.6
-  _enemiesSpawnTimer: 1.6
-  _minEnemiesSpawnTimer: 0.6
-  _enemiesSpawnTimerScaling: 0.2
-  _waitingForNewRoundTimer: 1.8
---- !u!4 &1719117699
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1719117697}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.485, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 505302673}
-  - {fileID: 1614105412}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1879165361
 GameObject:
   m_ObjectHideFlags: 0
@@ -5228,8 +5171,8 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 1048950710}
   - {fileID: 1933148876}
+  - {fileID: 1032796846}
   - {fileID: 1251282898}
-  - {fileID: 1719117699}
   - {fileID: 1601514311}
   - {fileID: 1494214930}
   - {fileID: 1921242594}

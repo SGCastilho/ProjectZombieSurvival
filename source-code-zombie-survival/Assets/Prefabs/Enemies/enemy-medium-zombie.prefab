@@ -489,7 +489,7 @@ MonoBehaviour:
   _possibleDrops:
   - _dropName: Health Drop
     _dropKey: collectable_health
-    _dropChance: 0.6
+    _dropChance: 0.2
   - _dropName: Submachine Drop
     _dropKey: collectable_weapon_submachine
     _dropChance: 0.4

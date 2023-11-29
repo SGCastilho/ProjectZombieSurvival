@@ -30,9 +30,13 @@ namespace Core.Enemies
 
         private Transform _transform;
 
+        private Vector2 _currentScaling;
+
         private void Awake()
         {
             _transform = GetComponent<Transform>();
+
+            _currentScaling = _flipGroupTransform.localScale;
         }
 
         private void OnEnable() 
@@ -66,11 +70,11 @@ namespace Core.Enemies
 
             if(_isFlipped)
             {
-                _flipGroupTransform.localScale = new Vector2(-1f, 1f);
+                _flipGroupTransform.localScale = new Vector2(-_currentScaling.x, _currentScaling.y);
             }
             else
             {
-                _flipGroupTransform.localScale = new Vector2(1f, 1f);
+                _flipGroupTransform.localScale = new Vector2(_currentScaling.x, _currentScaling.y);
             }
         }
 

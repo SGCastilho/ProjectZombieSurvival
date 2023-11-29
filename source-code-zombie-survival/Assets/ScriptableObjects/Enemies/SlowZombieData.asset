@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyKey: enemy_slow_zombie
   _enemyName: Slow Zombie
-  _enemyMaxHealth: 60
+  _enemyMaxHealth: 120
   _enemyDamage: 20
   _healthScaling: 0.4
   _damageScaling: 0.4

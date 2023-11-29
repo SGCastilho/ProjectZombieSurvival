@@ -10,12 +10,14 @@ namespace Core.Events
     {
         [Header("Classes")]
         [SerializeField] private ObjectPoolingManager _poolingManager;
+        [SerializeField] private WaveSpawnManager _waveSpawnManager;
 
         [SerializeField] private GameplayUI _gameplayUI;
 
         private PlayerBehaviour _playerBehaviour;
 
         private EnemyBehaviour[] _spawnedEnemies;
+        private EnemyBehaviour[] _spawnedBosses;
 
         private void Awake() => CacheVariables();
 
@@ -29,8 +31,10 @@ namespace Core.Events
         private void CacheEnemiesInScene()
         {
             GameObject[] enemiesInScene = _poolingManager.EnemiesInScene.ToArray();
+            GameObject[] bossesInScene = _poolingManager.BossesInScene.ToArray();
 
             _spawnedEnemies = new EnemyBehaviour[enemiesInScene.Length];
+            _spawnedBosses = new EnemyBehaviour[bossesInScene.Length]; 
 
             for (int i = 0; i < _spawnedEnemies.Length; i++)
             {
@@ -38,6 +42,13 @@ namespace Core.Events
             }
 
             _poolingManager.EnemiesInScene.Clear();
+
+            for (int i = 0; i < _spawnedBosses.Length; i++)
+            {
+                _spawnedBosses[i] = bossesInScene[i].GetComponent<EnemyBehaviour>();
+            }
+
+            _poolingManager.BossesInScene.Clear();
         }
 
         private void OnEnable() => EnableEvents();
@@ -65,7 +76,13 @@ namespace Core.Events
         {
             foreach(EnemyBehaviour enemy in _spawnedEnemies)
             {
+                enemy.Status.OnEnemyDie += _waveSpawnManager.DecreaseEnemiesCounter;
                 enemy.Drops.OnDropSpawn += _poolingManager.SpawnPooling;
+            }
+
+            foreach(EnemyBehaviour boss in _spawnedBosses)
+            {
+                boss.Drops.OnDropSpawn += _poolingManager.SpawnPooling;
             }
         }
 
@@ -94,7 +111,13 @@ namespace Core.Events
         {
             foreach(EnemyBehaviour enemy in _spawnedEnemies)
             {
+                enemy.Status.OnEnemyDie -= _waveSpawnManager.DecreaseEnemiesCounter;
                 enemy.Drops.OnDropSpawn -= _poolingManager.SpawnPooling;
+            }
+
+            foreach(EnemyBehaviour boss in _spawnedBosses)
+            {
+                boss.Drops.OnDropSpawn -= _poolingManager.SpawnPooling;
             }
         }
     }

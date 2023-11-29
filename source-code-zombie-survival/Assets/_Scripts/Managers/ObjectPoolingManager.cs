@@ -12,14 +12,16 @@ namespace Core.Managers
         public GameObject Prefab { get => _poolPrefab; }
 
         public bool IsEnemy { get => _isEnemy; }
+        public bool IsBoss { get => _isBoss; }
         #endregion
 
-        public Pool(string key, int size, GameObject prefab, bool isEnemy)
+        public Pool(string key, int size, GameObject prefab, bool isEnemy, bool isBoss)
         {
             _poolKey = key;
             _poolSize = size;
             _poolPrefab = prefab;
             _isEnemy = isEnemy;
+            _isBoss = isBoss;
         }
 
         [Header("Pool Settings")]
@@ -39,12 +41,14 @@ namespace Core.Managers
         [Space(8)]
 
         [SerializeField] private bool _isEnemy;
+        [SerializeField] private bool _isBoss;
     }
 
     public sealed class ObjectPoolingManager : MonoBehaviour
     {
         #region Encapsulation
         public List<GameObject> EnemiesInScene { get => _enemiesInScene; }
+        public List<GameObject> BossesInScene { get => _bossesInScene; }
         #endregion
     
         [Header("Settings")]
@@ -53,6 +57,7 @@ namespace Core.Managers
         private Dictionary<string, Queue<GameObject>> _poolingDictionary;
         
         private List<GameObject> _enemiesInScene;
+        private List<GameObject> _bossesInScene;
 
         private void Awake() => SetupPooling();
 
@@ -70,11 +75,11 @@ namespace Core.Managers
             _poolingList.Add(pool);
         }
 
-        public void AddPool(string poolKey, int poolSize, GameObject poolPrefab, bool isEnemy)
+        public void AddPool(string poolKey, int poolSize, GameObject poolPrefab, bool isEnemy, bool isBoss)
         {
             if(poolKey == null || poolSize <= 0 || poolPrefab == null) return;
 
-            var newPool = new Pool(poolKey, poolSize, poolPrefab, isEnemy);
+            var newPool = new Pool(poolKey, poolSize, poolPrefab, isEnemy, isBoss);
 
             _poolingList.Add(newPool);
         }
@@ -84,6 +89,7 @@ namespace Core.Managers
             if(_poolingList.Count <= 0) return;
 
             _enemiesInScene = new List<GameObject>();
+            _bossesInScene = new List<GameObject>();
 
             foreach(Pool pool in _poolingList)
             {
@@ -100,12 +106,29 @@ namespace Core.Managers
                     {
                         _enemiesInScene.Add(poolPrefab);
                     }
+                    else if(pool.IsBoss)
+                    {
+                        _bossesInScene.Add(poolPrefab);
+                    }
                 }
 
                 _poolingDictionary.Add(pool.Key, queue);
             }
         }
 
+        public GameObject SpawnPooling(string poolKey)
+        {
+            var pool = _poolingDictionary[poolKey].Dequeue();
+
+            pool.SetActive(false);
+
+            _poolingDictionary[poolKey].Enqueue(pool);
+
+            pool.SetActive(true);
+
+            return pool;
+        }
+        
         public GameObject SpawnPooling(string poolKey, Vector2 position)
         {
             var pool = _poolingDictionary[poolKey].Dequeue();

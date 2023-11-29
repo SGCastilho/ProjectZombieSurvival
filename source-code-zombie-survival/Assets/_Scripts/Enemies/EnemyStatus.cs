@@ -11,6 +11,9 @@ namespace Core.Enemies
         public int Damage { get => _enemyDamage; }
         #endregion
 
+        public delegate void EnemyDie(string enemyKey);
+        public event EnemyDie OnEnemyDie;
+
         [Header("Classes")]
         [SerializeField] private EnemyData _enemyData;
 
@@ -53,6 +56,8 @@ namespace Core.Enemies
             _enemyHealth -= amount;
             if(_enemyHealth <= 0)
             {
+                OnEnemyDie?.Invoke(_enemyData.Key);
+
                 _enemyHealth = 0;
 
                 _behaviour.StateMachine.ChangeState(_deathState);
