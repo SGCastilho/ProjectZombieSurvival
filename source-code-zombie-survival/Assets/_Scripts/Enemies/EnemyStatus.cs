@@ -8,6 +8,7 @@ namespace Core.Enemies
     public sealed class EnemyStatus : MonoBehaviour, IDamagable
     {
         #region Encapsulation
+        public string Key { get =>  _enemyData.Key; }
         public int Damage { get => _enemyDamage; }
         #endregion
 
@@ -39,7 +40,7 @@ namespace Core.Enemies
         {
             AddHealth(_scaledHealth);
             
-            _enemyDamage =_scaledDamage;
+            _enemyDamage = _scaledDamage;
         }
 
         public void AddHealth(int amount)

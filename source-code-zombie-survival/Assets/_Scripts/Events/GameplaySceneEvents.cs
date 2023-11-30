@@ -41,8 +41,6 @@ namespace Core.Events
                 _spawnedEnemies[i] = enemiesInScene[i].GetComponent<EnemyBehaviour>();
             }
 
-            _poolingManager.EnemiesInScene.Clear();
-
             for (int i = 0; i < _spawnedBosses.Length; i++)
             {
                 _spawnedBosses[i] = bossesInScene[i].GetComponent<EnemyBehaviour>();

@@ -2416,9 +2416,18 @@ MonoBehaviour:
     _enemySpawnKey: enemy_medium_zombie
     _waveApparition: 1
     _readyToSpawn: 0
-    _maxEnemySpawns: 0
+    _maxEnemySpawns: 6
     _currentSpawnsInScene: 0
-    _apparitionChance: 0.6
+    _apparitionChance: 0.8
+  _bossesSpawner:
+  - _bossName: Boss Slow Zombie
+    _bossSpawnKey: boss_slow_zombie
+  _currentWave: 0
+  _maxWaves: 5
+  _bossWaveCountdown: 5
+  _enemiesPerWave: 6
+  _fixedIncreaseEnemiesPerWave: 6
+  _nextRoundTimer: 3.6
   _spawnDistanceX: 14
   _spawnTimer: 1.8
 --- !u!1 &1048950707
@@ -4287,6 +4296,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _poolingManager: {fileID: 1251282897}
+  _waveSpawnManager: {fileID: 1032796847}
   _gameplayUI: {fileID: 521693147}
 --- !u!4 &1494214930
 Transform:
